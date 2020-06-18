@@ -1,7 +1,7 @@
 # image-sorter2
 One-click image sorting/labelling script. Copies or moves images from a folder into subfolders.
 
-<img width="700" alt="pic_github_readme" src="https://user-images.githubusercontent.com/16193553/53246066-89bfd680-36a7-11e9-9eaf-9adee0b8efa1.png">
+<img width="700" alt="pic_github_readme" src="https://github.com/ngoanpv/image-sorter2/blob/master/demo.png">
 
 
 This script is intended to be a help for users sorting a set of mixed images into folders differentiated by classes - e.g. cats image folder, dog images folder, bikes images folder a.s.o. The script launches a GUI which displays one image after the other and lets the user give different labels, corresponding to different folders, from a list provided as input by the user. In contrast to original version, version 2 allows for relabelling and keeping track of the labels. Provides also short-cuts - press "1" to put into "label 1", press "2" to put into "label 2" a.s.o.
