@@ -43,5 +43,6 @@ original Author: Christian Baumgartner (c.baumgartner@imperial.ac.uk),
 see here original "image-sorter" code: https://github.com/baumgach/image-sorter
 
 changes, version 2: Nestor Arsenov (nestorarsenov_AT_gmail_DOT_com), created at London Center for Nanotechnology with project funding provided by The Foundation for Innovative New Diagnostics (FIND)
+Change, version 3: Ngoan Pham
 
-Date: 22. Feb 2019
+Date: 18. Jun 2020
