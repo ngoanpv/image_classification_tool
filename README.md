@@ -8,11 +8,11 @@ This script is intended to be a help for users sorting a set of mixed images int
 
 ## Usage:
 
-run 'pip install -r requirements.txt' to install dependencies. 
+```js
+pip install -r requirements.txt
+sudo python image-sorter2_script.py
+```
 
-then
-
-run 'sudo python image-sorter2_script.py' or copy the script in a jupyter notebook and run then.
 
 You need also to provide your specific input in the file-header (source folder, labels, 'copy' or 'move' mode, path to tracker file, desired file extensions (.jpg, .png, ...), resize keeping original aspect ratio or display original). Read the header in the .py-script, follow the discriptions and make the necessary changes to run it on your machine.
 
