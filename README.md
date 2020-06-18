@@ -12,7 +12,14 @@ run 'pip install -r requirements.txt' to install dependencies.
 
 then
 
-run 'python image-sorter2_script.py' or copy the script in a jupyter notebook and run then. You need also to provide your specific input in the file-header (source folder, labels, 'copy' or 'move' mode, path to tracker file, desired file extensions (.jpg, .png, ...), resize keeping original aspect ratio or display original). Read the header in the .py-script, follow the discriptions and make the necessary changes to run it on your machine.
+run 'sudo python image-sorter2_script.py' or copy the script in a jupyter notebook and run then.
+
+You need also to provide your specific input in the file-header (source folder, labels, 'copy' or 'move' mode, path to tracker file, desired file extensions (.jpg, .png, ...), resize keeping original aspect ratio or display original). Read the header in the .py-script, follow the discriptions and make the necessary changes to run it on your machine.
+
+## Fix Error Install 
+sudo apt-get install python3-tk 
+sudo apt-get install python3-pil python3-pil.imagetk
+
 
 ## Other useful scripts:
 A list of other image labelling/sorting script that might be helpful
