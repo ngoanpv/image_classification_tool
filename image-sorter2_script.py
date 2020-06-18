@@ -26,10 +26,10 @@
 
 # the folder in which the pictures that are to be sorted are stored
 # don't forget to end it with the sign '/' !
-input_folder = '/file_path/to/image_folder/'
+input_folder = '/home/lap13030/Downloads/'
 
 # the different folders into which you want to sort the images, e.g. ['cars', 'bikes', 'cats', 'horses', 'shoes']
-labels = ["label1", "label2", "label3"]
+labels = ["ngoan", "dep", "trai"]
 
 # provide either 'copy' or 'move', depending how you want to sort the images into the new folders
 # - 'move' starts where you left off last time sorting, no 'go to #pic', works with number-buttons for labeling, no txt-file for tracking after closing GUI, saves memory
@@ -42,7 +42,7 @@ copy_or_move = 'copy'
 # If you provide a path to file that already exists, than this file will be used for keeping track of the storing.
 # This means: 1st time you run this script and such a file doesn't exist the file will be created and populated,
 # 2nd time you run the same script, and you use the same df_path, the script will use the file to continue the sorting.
-df_path = '/file_path/to/non_existing_file_df.txt'
+df_path = '/home/lap13030/Downloads/non_existing_file_df.txt'
 
 # a selection of what file-types to be sorted, anything else will be excluded
 file_extensions = ['.jpg', '.png', '.whatever']
