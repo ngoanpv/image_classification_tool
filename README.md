@@ -1,9 +1,15 @@
 # image-sorter2
+
 One-click image sorting/labelling script. Copies or moves images from a folder into subfolders.
 
-<img width="700" alt="pic_github_readme" src="https://github.com/ngoanpv/image-sorter2/blob/master/demo.png">
+## TODO 
 
-## Output 
+* Choose input, output folder, images extension from GUI
+
+* Scale image to fix viewer 
+
+
+<img width="700" alt="pic_github_readme" src="https://github.com/ngoanpv/image-sorter2/blob/master/demo.png">
 
 <img width="700" alt="pic_github_readme" src="https://github.com/ngoanpv/image-sorter2/blob/master/demo_output.png">
 
@@ -46,5 +52,6 @@ see here original "image-sorter" code: https://github.com/baumgach/image-sorter
 changes, version 2: Nestor Arsenov (nestorarsenov_AT_gmail_DOT_com), created at London Center for Nanotechnology with project funding provided by The Foundation for Innovative New Diagnostics (FIND)
 
 Change, version 3: Ngoan Pham
+
 
 Date: 18. Jun 2020
