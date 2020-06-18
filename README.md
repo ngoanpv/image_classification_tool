@@ -22,6 +22,7 @@ You need also to provide your specific input in the file-header (source folder, 
 
 ## Fix Error Install 
 sudo apt-get install python3-tk 
+
 sudo apt-get install python3-pil python3-pil.imagetk
 
 
@@ -43,6 +44,7 @@ original Author: Christian Baumgartner (c.baumgartner@imperial.ac.uk),
 see here original "image-sorter" code: https://github.com/baumgach/image-sorter
 
 changes, version 2: Nestor Arsenov (nestorarsenov_AT_gmail_DOT_com), created at London Center for Nanotechnology with project funding provided by The Foundation for Innovative New Diagnostics (FIND)
+
 Change, version 3: Ngoan Pham
 
 Date: 18. Jun 2020
