@@ -1,72 +1,26 @@
-
-
-"""
- One-click image sorting/labelling script. Copies or moves images from a folder into subfolders. 
- This script launches a GUI which displays one image after the other and lets the user give different labels
- from a list provided as input to the script. In contrast to original version, version 2 allows for 
- relabelling and keeping track of the labels.
- Provides also short-cuts - press "1" to put into "label 1", press "2" to put into "label 2" a.s.o.
-
- USAGE:
- run 'python sort_folder_vers2.py' or copy the script in a jupyter notebook and run then
-
- you need also to provide your specific input (source folder, labels and other) in the preamble
- original Author: Christian Baumgartner (c.baumgartner@imperial.ac.uk)
- changes, version 2: Nestor Arsenov (nestorarsenov_AT_gmail_DOT_com)
- Date: 24. Dec 2018
-"""
-
-
-# Define global variables, which are to be changed by user:
-
-# In[5]:
-
-
-##### added in version 2
-
-# the folder in which the pictures that are to be sorted are stored
-# don't forget to end it with the sign '/' !
-input_folder = '/home/lap13030/Downloads/'
-
-# the different folders into which you want to sort the images, e.g. ['cars', 'bikes', 'cats', 'horses', 'shoes']
-labels = ["ngoan", "dep", "trai"]
-
-# provide either 'copy' or 'move', depending how you want to sort the images into the new folders
-# - 'move' starts where you left off last time sorting, no 'go to #pic', works with number-buttons for labeling, no txt-file for tracking after closing GUI, saves memory
-# - 'copy' starts always at beginning, has 'go to #pic', doesn't work with number-buttons, has a txt-for tracking the labels after closing the GUI
-copy_or_move = 'copy'
-
-# Only relevant if copy_or_move = 'copy', else ignored
-# A file-path to a txt-file, that WILL be created by the script. The results of the sorting wil be stored there.
-# Don't provide a filepath to an empty file, provide to a non-existing one!
-# If you provide a path to file that already exists, than this file will be used for keeping track of the storing.
-# This means: 1st time you run this script and such a file doesn't exist the file will be created and populated,
-# 2nd time you run the same script, and you use the same df_path, the script will use the file to continue the sorting.
-df_path = '/home/lap13030/Downloads/non_existing_file_df.txt'
-
-# a selection of what file-types to be sorted, anything else will be excluded
-file_extensions = ['.jpg', '.png', '.whatever']
-
-# set resize to True to resize image keeping same aspect ratio
-# set resize to False to display original image
-resize = True
-
-#####
-
-
-# In[8]:
-
-
-
 import pandas as pd
 import os
 import numpy as np
-
+import glob
 import argparse
 import tkinter as tk
 import os
 from shutil import copyfile, move
 from PIL import ImageTk, Image
+
+#CONFIG
+
+input_folder_pattern = '/home/ngoanpv/work/datalab/liveness/fecredit_test/pass_quality/**/'
+labels = ["live_good", "live_bad", "spoof", "noise"]
+# provide either 'copy' or 'move', depending how you want to sort the images into the new folders
+# - 'move' starts where you left off last time sorting, no 'go to #pic', works with number-buttons for labeling, no txt-file for tracking after closing GUI, saves memory
+# - 'copy' starts always at beginning, has 'go to #pic', doesn't work with number-buttons, has a txt-for tracking the labels after closing the GUI
+copy_or_move = 'copy'
+df_path = '/home/ngoanpv/work/datalab/liveness/fecredit_test/tracking_set1.txt'
+# a selection of what file-types to be sorted, anything else will be excluded
+file_extensions = ['*.jpg', '*.png', '*.jpeg']
+resize = False
+ROOT_DES_PATH = "/home/ngoanpv/work/datalab/liveness/fecredit_test/labeled/set1/"
 
 class ImageGui:
     """
@@ -284,7 +238,8 @@ class ImageGui:
         :return: Resized or original image 
         """
         image = Image.open(path)
-        if(resize):
+        im_width, im_height = image.size
+        if(resize or im_width>1000 or im_height > 1000):
             max_height = 500
             img = image 
             s = img.size
@@ -300,22 +255,28 @@ class ImageGui:
         :param input_path: Path of the original image
         :param label: The label
         """
+        import datetime
+
+        now = str(datetime.datetime.now())[:19]
+        now = now.replace(":", "_")
+
         root, file_name = os.path.split(df.sorted_in_folder[ind])
         # two lines below check if the filepath contains as an ending a folder with the name of one of the labels
         # if so, this folder is being cut out of the path
         if os.path.split(root)[1] in labels:
             root = os.path.split(root)[0]
             os.remove(df.sorted_in_folder[ind])
-            
-        output_path = os.path.join(root, label, file_name)
+
+        name, ext = file_name.split('.')
+        name = name + '_' + now + '.' + ext
+        output_path = os.path.join(ROOT_DES_PATH, label, name)
         print("file_name =",file_name)
         print(" %s --> %s" % (file_name, label))
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
         copyfile(df.im_path[ind], output_path)
-        
         # keep track that the image location has been changed by putting the new location-path in sorted_in_folder    
-        df.loc[ind,'sorted_in_folder'] = output_path
+        df.loc[ind, 'sorted_in_folder'] = output_path
         #####
-        
         df.to_csv(df_path)
 
     @staticmethod
@@ -353,35 +314,15 @@ def make_folder(directory):
 # The main bit of the script only gets exectured if it is directly called
 if __name__ == "__main__":
 
-###### Commenting out the initial input and puting input into preamble
-#     # Make input arguments
-#     parser = argparse.ArgumentParser()
-#     parser.add_argument('-f', '--folder', help='Input folder where the *tif images should be', required=True)
-#     parser.add_argument('-l', '--labels', nargs='+', help='Possible labels in the images', required=True)
-#     args = parser.parse_args()
-
-#     # grab input arguments from args structure
-#     input_folder = args.folder
-#     labels = args.labels
-    
     # Make folder for the new labels
     for label in labels:
-        make_folder(os.path.join(input_folder, label))
+        make_folder(os.path.join(input_folder_pattern, label))
 
     # Put all image file paths into a list
     paths = []
-#     for file in os.listdir(input_folder):
-#         if file.endswith(".tif") or file.endswith(".tiff"):
+    for ext in file_extensions:
+        paths.extend(glob.glob(os.path.join(input_folder_pattern, ext), recursive = True))
 
-#             path = os.path.join(input_folder, file)
-#             paths.append(path).
-
-    ######## added in version 2
-    file_names = [fn for fn in sorted(os.listdir(input_folder))
-                  if any(fn.endswith(ext) for ext in file_extensions)]
-    paths = [input_folder+file_name for file_name in file_names]
-    
-    
     if copy_or_move == 'copy':
         try:
             df = pd.read_csv(df_path, header=0)
@@ -398,6 +339,7 @@ if __name__ == "__main__":
     
 # Start the GUI
 root = tk.Tk()
+root.title("Happy Labeling :D")
 app = ImageGui(root, labels, paths)
 root.mainloop()
 
