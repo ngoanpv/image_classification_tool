@@ -10,17 +10,19 @@ from PIL import ImageTk, Image
 
 #CONFIG
 
-input_folder_pattern = '/home/ngoanpv/work/datalab/liveness/fecredit_test/pass_quality/**/'
+input_folder_pattern = '/home/ngoanpv/work/datalab/liveness/fecredit_test/pass_quality/set2/data1/fecredits/**/'
+df_path = '/home/ngoanpv/work/datalab/liveness/fecredit_test/tracking_set2.txt'
+ROOT_DES_PATH = "/home/ngoanpv/work/datalab/liveness/fecredit_test/labeled/set2/"
+
+
 labels = ["live_good", "live_bad", "spoof", "noise"]
 # provide either 'copy' or 'move', depending how you want to sort the images into the new folders
 # - 'move' starts where you left off last time sorting, no 'go to #pic', works with number-buttons for labeling, no txt-file for tracking after closing GUI, saves memory
 # - 'copy' starts always at beginning, has 'go to #pic', doesn't work with number-buttons, has a txt-for tracking the labels after closing the GUI
 copy_or_move = 'copy'
-df_path = '/home/ngoanpv/work/datalab/liveness/fecredit_test/tracking_set1.txt'
 # a selection of what file-types to be sorted, anything else will be excluded
 file_extensions = ['*.jpg', '*.png', '*.jpeg']
 resize = False
-ROOT_DES_PATH = "/home/ngoanpv/work/datalab/liveness/fecredit_test/labeled/set1/"
 
 class ImageGui:
     """
@@ -257,7 +259,7 @@ class ImageGui:
         """
         import datetime
 
-        now = str(datetime.datetime.now())[:19]
+        now = str(datetime.datetime.now())[:25]
         now = now.replace(":", "_")
 
         root, file_name = os.path.split(df.sorted_in_folder[ind])
