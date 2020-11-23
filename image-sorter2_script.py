@@ -95,8 +95,8 @@ class ImageGui:
             
         #### added in version 2
         # Add sorting label
-        sorting_string = os.path.split(df.sorted_in_folder[self.index])[-2]
-        self.sorting_label = tk.Label(frame, text=("in folder: %s" % (sorting_string)), width=15)
+        sorting_string = os.path.split(df.sorted_in_folder[self.index])[-1]
+        self.sorting_label = tk.Label(frame, text=("file: %s" % (sorting_string)), width=100)
         
         # Place typing input in grid, in case the mode is 'copy'
         if copy_or_move == 'copy':
@@ -344,4 +344,3 @@ root = tk.Tk()
 root.title("Happy Labeling :D")
 app = ImageGui(root, labels, paths)
 root.mainloop()
-
