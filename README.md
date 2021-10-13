@@ -15,9 +15,6 @@ python  image-sorter2_script.py
 * Scale image to fix viewer 
 
 
-<img width="700" alt="pic_github_readme" src="https://github.com/ngoanpv/image-sorter2/blob/master/demo.png">
-
-<img width="700" alt="pic_github_readme" src="https://github.com/ngoanpv/image-sorter2/blob/master/demo_output.png">
 
 
 
